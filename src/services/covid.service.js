@@ -2,7 +2,7 @@ import axios from "axios";
 import logger from "../libs/logger";
 import { query } from "./db.service";
 
-export const getCovidPublicData = async () => {
+export const fetchPublicApi = async () => {
   const {
     data: {
       update: { penambahan },
@@ -12,7 +12,7 @@ export const getCovidPublicData = async () => {
   return penambahan;
 };
 
-export const create = async (data) => {
+export const insert = async (data) => {
   const { rows } = await query(
     "INSERT INTO covid_data (total_positive, total_hospitalize, total_recovered, total_pass_away, date, created_date) VALUES ($1, $2, $3, $4, $5, $6)",
     Object.values(data)
@@ -21,7 +21,7 @@ export const create = async (data) => {
   return rows;
 };
 
-export const createIfPublicApiUpdate = async () => {
+export const insertIfPublicApiUpdate = async () => {
   const publicApiData = await getCovidPublicData();
   const { tanggal } = publicApiData;
   console.log(publicApiData);
@@ -33,7 +33,7 @@ export const createIfPublicApiUpdate = async () => {
 
   const [{ count }] = results.rows;
   if (count < 1) {
-    await create(publicApiData);
+    await insert(publicApiData);
     logger.info("Data successfully updated!");
   } else {
     logger.info("Data is the lastest update!");

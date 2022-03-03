@@ -1,7 +1,7 @@
 import logger from "../libs/logger";
 import * as covidService from "../services/covid.service";
 
-export const get = async (req, res, next) => {
+export const getLastestData = async (req, res, next) => {
   try {
     const resultSingle = await covidService.getSingle();
 

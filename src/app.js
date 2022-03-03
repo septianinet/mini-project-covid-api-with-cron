@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../public")));
 app.use("/", covidRouter);
 
-nodeCron.schedule("*/1 * * * *", covidService.createIfPublicApiUpdate);
-// nodeCron.schedule("59 11 * * *", covidService.createIfPublicApiUpdate);
+// nodeCron.schedule("*/1 * * * *", covidService.createIfPublicApiUpdate);
+nodeCron.schedule("59 11 * * *", covidService.insertIfPublicApiUpdate);
 
 export default app;

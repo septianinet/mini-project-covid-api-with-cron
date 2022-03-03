@@ -10,6 +10,6 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 
-router.get("/covid-19", covidController.get);
+router.get("/covid-19", covidController.getLastestData);
 
 module.exports = router;
