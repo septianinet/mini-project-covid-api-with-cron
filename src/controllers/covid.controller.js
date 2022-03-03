@@ -1,3 +1,4 @@
+import logger from "../libs/logger";
 import * as covidService from "../services/covid.service";
 
 export const get = async (req, res, next) => {
@@ -6,7 +7,7 @@ export const get = async (req, res, next) => {
 
     res.status(200).json(resultSingle);
   } catch (error) {
-    console.error(`Error while getting data from public api`, error.message);
+    logger.error(`Error while getting data from public api ${error.message}`);
     next(error);
   }
 };

@@ -37,7 +37,8 @@
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "regenerator-runtime": "^0.13.9",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "winston": "^3.6.0"
   },
   "babel": {
     "presets": [

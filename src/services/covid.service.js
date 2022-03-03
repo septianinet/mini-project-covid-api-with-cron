@@ -1,4 +1,5 @@
 import axios from "axios";
+import logger from "../libs/logger";
 import { query } from "./db.service";
 
 export const getCovidPublicData = async () => {
@@ -33,9 +34,9 @@ export const createIfPublicApiUpdate = async () => {
   const [{ count }] = results.rows;
   if (count < 1) {
     await create(publicApiData);
-    console.log("Data successfully updated!");
+    logger.info("Data successfully updated!");
   } else {
-    console.log("Data is the lastest update!");
+    logger.info("Data is the lastest update!");
   }
 };
 
