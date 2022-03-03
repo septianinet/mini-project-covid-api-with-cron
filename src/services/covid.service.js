@@ -24,7 +24,6 @@ export const insert = async (data) => {
 export const insertIfPublicApiUpdate = async () => {
   const publicApiData = await getCovidPublicData();
   const { tanggal } = publicApiData;
-  console.log(publicApiData);
 
   const results = await query(
     "SELECT count(id) as count FROM covid_data WHERE date IN ($1)",
@@ -34,10 +33,8 @@ export const insertIfPublicApiUpdate = async () => {
   const [{ count }] = results.rows;
   if (count < 1) {
     await insert(publicApiData);
-    logger.info("Data successfully updated!");
-  } else {
-    logger.info("Data is the lastest update!");
   }
+  logger.info("Data is the lastest update!");
 };
 
 export const getSingle = async () => {
